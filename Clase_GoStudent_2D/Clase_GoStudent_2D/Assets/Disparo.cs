@@ -11,10 +11,12 @@ public class Disparo : MonoBehaviour
 
     private DeteccionJugador deteccionjugador;
     private Coroutine coroutine;
+    public ParticleSystem particles;
     // Start is called before the first frame update
     void Start()
     {
         deteccionjugador = GetComponent<DeteccionJugador>();
+        
         
     }
 
@@ -36,6 +38,11 @@ public class Disparo : MonoBehaviour
         {
             Instantiate(prefabProyectil,puntoDisparo.position, transform.rotation);
             anim.SetTrigger("Disparo");
+            if(particles != null)
+            {
+                particles.Play();
+            }
+            
             yield return new WaitForSeconds(cooldown);
         }
 
